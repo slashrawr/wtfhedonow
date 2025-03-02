@@ -1,0 +1,17 @@
+name: Deploy Lambda Function
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_lambda:
+    name: Deploy Lambda
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Install AWS CLI
+        run: | 
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
