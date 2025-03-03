@@ -41,7 +41,8 @@
     <script>
         async function downloadDataJson() {
             try {
-                const fetchResponse = fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
+                console.log("Getting data.json...")
+                const fetchResponse = await fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
                     {
                         method: 'GET',
                         mode: 'cors',
@@ -51,8 +52,9 @@
                         }
                     }
                 );
-                console.log(fetchResponse);
-                return fetchResponse.json();
+
+                console.log("Got data.json...")
+                return await fetchResponse.json();
             } catch (err) {
                 console.error('Error - ', err);
             }
@@ -62,7 +64,7 @@
         async function loadTableData() {
             try {
                 const data = downloadDataJson()
-                console.log(data);
+                console.log("Data:" + data);
 
                 const tableBody = document.querySelector("#data-table tbody");
                 tableBody.innerHTML = ""; // Clear existing content
