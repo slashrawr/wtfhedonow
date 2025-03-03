@@ -46,6 +46,7 @@
                                              {method: 'GET',
                                             mode: 'no-cors'});
                 const data = await response.json();
+                console.log(data);
 
                 const tableBody = document.querySelector("#data-table tbody");
                 tableBody.innerHTML = ""; // Clear existing content
