@@ -39,14 +39,40 @@
         }
     </style>
     <script>
+        async function downloadDataJson() {
+            try {
+                const fetchResponse = await fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
+                    {
+                        method: 'GET',
+                        mode: 'cors',
+                        headers: {
+                            'Access-Control-Allow-Origin': "*",
+                            'Access-Control-Allow-Headers': "*",
+                            'Access-Control-Request-Method': "GET",
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+                console.log(fetchResponse);
+                return await fetchResponse.json();
+            } catch (err) {
+                console.error('Error - ', err);
+            }
+        }
+
         // Fetch and populate table with JSON data
         async function loadTableData() {
             try {
-                const response = await fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
-                                             {method: 'GET',
-                                            mode: 'no-cors'});
-                const data = await response.json();
-                console.log(data);
+                //const fetchPromise = fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
+                //                            {method: 'GET',
+                //                            mode: 'no-cors',
+                //                            headers: {
+                //                                'Content-Type': 'application/json'
+                //                            }}
+                //                        );
+                //console.log(response);
+                const data = downloadDataJson()
+                //console.log(data);
 
                 const tableBody = document.querySelector("#data-table tbody");
                 tableBody.innerHTML = ""; // Clear existing content
