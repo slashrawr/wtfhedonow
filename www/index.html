@@ -41,7 +41,7 @@
     <script>
         async function downloadDataJson() {
             try {
-                const fetchResponse = await fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
+                const fetchResponse = fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
                     {
                         method: 'GET',
                         mode: 'cors',
