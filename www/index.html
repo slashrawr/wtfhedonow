@@ -51,7 +51,7 @@
                         }
                     }
                 );
-                console.log(fetchResponse);
+                
                 return await fetchResponse.json();
             } catch (err) {
                 console.error('Error - ', err);
@@ -61,16 +61,8 @@
         // Fetch and populate table with JSON data
         async function loadTableData() {
             try {
-                //const fetchPromise = fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
-                //                            {method: 'GET',
-                //                            mode: 'no-cors',
-                //                            headers: {
-                //                                'Content-Type': 'application/json'
-                //                            }}
-                //                        );
-                //console.log(response);
                 const data = downloadDataJson()
-                //console.log(data);
+                console.log(data);
 
                 const tableBody = document.querySelector("#data-table tbody");
                 tableBody.innerHTML = ""; // Clear existing content
