@@ -39,7 +39,8 @@
         }
     </style>
     <script>
-        async function downloadDataJson() {
+        // Fetch and populate table with JSON data
+        async function loadTableData() {
             try {
                 console.log("Getting data.json...")
                 const fetchResponse = await fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
@@ -52,18 +53,8 @@
                         }
                     }
                 );
-
                 console.log("Got data.json...")
-                return await fetchResponse.json();
-            } catch (err) {
-                console.error('Error - ', err);
-            }
-        }
-
-        // Fetch and populate table with JSON data
-        async function loadTableData() {
-            try {
-                const data = downloadDataJson()
+                const data = await fetchResponse.json();
                 console.log("Data:" + data);
 
                 const tableBody = document.querySelector("#data-table tbody");
