@@ -40,12 +40,12 @@
         a:hover {
             text-decoration: underline;
         }
-        tr
+        tbody tr
         {
         transition: transform .2s;
         }
 
-        tr:hover {
+        tbody tr:hover {
         cursor:pointer; 
         transform: scale(1.03);
         background:#ccc;
@@ -83,7 +83,7 @@
                     row.innerHTML = `
                         <td><a href="${url}" target="_blank">${date}</a></td>
                         <td><a href="${url}" target="_blank">${entry.summary}</a></td>
-                        <td>${entry.urls.map(url => `<a href="${url}" target="_blank">Source</a>`).join("&nbsp")}</td>
+                        <td>${entry.urls.map(url => `<a href="${url}" target="_blank">Source</a>`).join("\n")}</td>
                     `;
 
                     tableBody.appendChild(row);
