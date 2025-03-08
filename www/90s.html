@@ -1,0 +1,299 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title>wtfhedonow?! - Trump Watch 2025</title>
+    <style>      
+        body {
+            font-family: "Comic Sans MS", cursive;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: #000000 url('https://web.archive.org/web/20091027004705/http://de.geocities.com/www.geocities.com/hk/stars.gif');
+            color: #00ff00;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        h1 {
+            font-size: 48px;
+            text-shadow: 2px 2px #ff0000, -2px -2px #0000ff;
+            color: #ffff00;
+            margin: 20px 0;
+            animation: rainbow 3s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            20% { color: #ffff00; }
+            40% { color: #00ff00; }
+            60% { color: #00ffff; }
+            80% { color: #ff00ff; }
+            100% { color: #ff0000; }
+        }
+
+        .construction {
+            margin: 20px auto;
+        }
+
+        .construction img {
+            height: 50px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #00ff00;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border: 3px ridge #808080;
+        }
+
+        .flex-article-container {
+            width: 95%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem auto;
+            padding: 1rem;
+        }
+
+        .card {
+            background: linear-gradient(45deg, #000080, #000000);
+            border: 5px ridge #c0c0c0;
+            padding: 1rem;
+            position: relative;
+            color: #ffffff;
+        }
+
+        .card:hover {
+            animation: shake 0.5s linear infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .severity-indicator {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 1px 1px #000000;
+        }
+
+        a:hover {
+            color: #ff00ff;
+            text-decoration: underline;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px ridge #808080;
+        }
+
+        th {
+            background: linear-gradient(to right, #000080, #000000);
+            color: #ffff00;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            border: 2px outset #808080;
+        }
+
+        td {
+            border: 1px solid #404040;
+            padding: 8px;
+            color: #00ff00;
+        }
+
+        .flex-container {
+            background: linear-gradient(45deg, #000080, #000000);
+            border: 5px ridge #c0c0c0;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 90%;
+        }
+
+        .flex-container h2 {
+            color: #ffff00;
+            text-shadow: 2px 2px #ff0000;
+        }
+
+        .visitor-counter {
+            margin: 20px auto;
+            padding: 10px;
+            background: #000000;
+            border: 3px ridge #808080;
+            display: inline-block;
+            color: #ff0000;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+        }
+
+        .webring {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .webring img {
+            height: 40px;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .flex-article-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+    <script>
+        // Severity mapping function
+        function getSeverityDetails(text) {
+            // Keywords that might indicate severity
+            const highSeverityKeywords = ['illegal', 'unlawfully', 'undermining', 'crisis', 'threatening', 'severe'];
+            const mediumSeverityKeywords = ['potentially', 'concerns', 'uncertain', 'controversial', 'questionable'];
+            
+            text = text.toLowerCase();
+            
+            // Count matches for each severity level
+            const highCount = highSeverityKeywords.filter(word => text.includes(word)).length;
+            const medCount = mediumSeverityKeywords.filter(word => text.includes(word)).length;
+            
+            // Determine severity based on keyword matches
+            if (highCount >= 2 || text.includes('illegal') || text.includes('unlawfully')) {
+                return {
+                    level: 'high',
+                    emoji: '🔥',
+                    color: 'var(--severity-high)'
+                };
+            } else if (highCount === 1 || medCount >= 2) {
+                return {
+                    level: 'medium',
+                    emoji: '⚠️',
+                    color: 'var(--severity-medium)'
+                };
+            } else {
+                return {
+                    level: 'low',
+                    emoji: '⚡',
+                    color: 'var(--severity-low)'
+                };
+            }
+        }
+
+        // Fetch and populate table with JSON data
+        async function loadTableData() {
+            try {
+                const fetchResponse = await fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
+                    {
+                        method: 'GET',
+                        mode: 'cors',
+                        headers: {
+                            'Origin': 'https://main.d392p52lqd4u4c.amplifyapp.com',
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+                
+                const data = await fetchResponse.json();
+
+                const articleContainer = document.getElementById("article-container");
+
+                const tableBody = document.querySelector("#data-table tbody");
+                tableBody.innerHTML = ""; // Clear existing content
+
+                data.forEach(entry => {
+                    // Extracting date from the first URL
+                    const url = entry.urls[0];
+                    const urlParts = url.match(/\d{4}\/\d{2}\/\d{2}/);
+                    const date = urlParts ? urlParts[0].replace(/\//g, ' ') : "N/A";
+
+                    // Get severity details
+                    const severityDetails = getSeverityDetails(entry.summary);
+
+                    const card = document.createElement("div");
+                    card.setAttribute("class", `card severity-${severityDetails.level}`);
+                    card.innerHTML = `
+                        <div class="severity-indicator" title="Severity: ${severityDetails.level.toUpperCase()}">${severityDetails.emoji}</div>
+                        <a href="${url}" target="_blank">${entry.summary}</a>
+                    `;
+                    articleContainer.appendChild(card);
+
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td><a href="${url}" target="_blank">${date}</a></td>
+                        <td>
+                            <span style="margin-right: 8px;">${severityDetails.emoji}</span>
+                            <a href="${url}" target="_blank">${entry.summary}</a>
+                        </td>
+                        <td>${entry.urls.forEach(url => `<a href="${url}" target="_blank">Source</a>`)}</td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error loading data:", error);
+            }
+        }
+
+        // Load data on page load
+        window.onload = loadTableData;
+    </script>
+</head>
+<body>
+    <img src="https://web.archive.org/web/20091027012912/http://www.geocities.com/ResearchTriangle/Facility/8741/Underconstruction.gif" alt="Under Construction">
+    <img src="https://web.archive.org/web/20091027012912/http://www.geocities.com/ResearchTriangle/Facility/8741/Underconstruction.gif" alt="Under Construction">
+    <h1 class="blink">wtfhedonow?!</h1>
+    <marquee behavior="alternate" scrollamount="5">🚨 BREAKING NEWS: Tracking Trump's Second Term - Updated Daily! 🚨</marquee>
+    <p>A summary of recent actions and decisions made by the Trump administration.</p>
+    <div id="article-container" class="flex-article-container">
+    </div>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th style="width: 10%; text-align: center;" "="">Date</th>
+                <th style="width: auto;">Summary</th>
+                <th style="width: 10%; text-align: center;">Source</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div style="text-align: center; margin: 20px;">
+        <div style="display: inline-block; background: #000; border: 3px ridge #808080; padding: 10px; color: #ff0000; font-family: 'Courier New', monospace;">
+            Visitors: 000042069
+        </div>
+      </div>
+    <div style="text-align: center; margin: 20px;">
+        <img src="https://web.archive.org/web/20091027012912/http://www.geocities.com/ResearchTriangle/Facility/8741/ie_animated.gif" alt="Best viewed in Internet Explorer" style="height: 40px; margin: 0 10px;">
+        <img src="https://web.archive.org/web/20091027012912/http://www.geocities.com/ResearchTriangle/Facility/8741/netscape.gif" alt="Netscape Compatible" style="height: 40px; margin: 0 10px;">
+    </div>
+</body></html>
