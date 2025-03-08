@@ -30,7 +30,7 @@ BRANCH = os.environ['branch']
 S3_BUCKET = os.environ['s3_bucket']
 S3_KEY_DATA_FILE = os.environ['s3_key_data_file']
 
-PROMPT = "You are an unbiased political analyst. You carefully analyse news articles every day as part of chronicling President Donald J. Trump's 2nd term. Below is a collection of articles from today. Summarise each article into a single sentence highlighting actions and activities by Donald J. Trump, Elon Musk and his administration that are ethically questionable, potentially illegal, undermine American institutions and American constitution or would otherwise be considered \"dumb\" by any sensible individual. It is vital you are as objective as possible and do not embellish or read into details that are not there. Only include articles that are directly related to President Trump, Elon Musk or his administration. If there is nothing improper, then ignore the article. Where articles describe the same thing, combine them into a single summary. Phrase summaries in the third person. Cite the respective article URL or set of URLs if articles are combined along with the summary. Provide an assessment of severity (LOW, MED, HIGH) of the implications of the actions or activities reported in the articles. Identify a list of key \"tags\" for each entry. Leave out the preamble and postamble. Return the summaries in JSON format with the following schema: [ { \"summary\" : <summary>, \"urls\" : [<urls>], \"severity\" : <severity>, \"tags\" : [<tags>] } ]"
+PROMPT = "You are an unbiased political analyst. You carefully analyse news articles every day as part of chronicling President Donald J. Trump's 2nd term. Below is a collection of articles from today. Summarise each article into a single sentence highlighting actions and activities by Donald J. Trump, Elon Musk and his administration that are ethically questionable, potentially illegal, undermine American institutions and American constitution or would otherwise be considered \"dumb\" by any sensible individual. It is vital you are as objective as possible and do not embellish or read into details that are not there. Only include articles that are directly related to President Trump, Elon Musk or his administration. If there is nothing improper, then ignore the article. Where articles describe the same thing, combine them into a single summary. Phrase summaries in the third person. Keep the summaries succinct. Cite the respective article URL or set of URLs if articles are combined along with the summary. Provide an assessment of severity (LOW, MED, HIGH) of the implications of the actions or activities reported in the articles. Identify a list of key one word \"tags\" for each entry. Leave out the preamble and postamble. Return the summaries in JSON format with the following schema: [ { \"summary\" : <summary>, \"urls\" : [<urls>], \"severity\" : <severity>, \"tags\" : [<tags>] } ]"
 
 def call_nyt():
     try:
@@ -46,7 +46,7 @@ def call_nyt():
         articles = []
 
         for item in response.json()["response"]["docs"]:
-            print(json.dumps(item) + "\n")
+            #print(json.dumps(item) + "\n")
             article = {"url": item["web_url"], "abstract": item["abstract"] + item["lead_paragraph"]}
             articles.append(article)           
 
@@ -101,10 +101,10 @@ def call_claude(articles):
     )
     
     response = bedrock_runtime.invoke_model(
-    body=body, 
-    modelId='arn:aws:bedrock:us-east-1:959425594836:inference-profile/us.anthropic.claude-3-5-haiku-20241022-v1:0', 
-    accept='application/json', 
-    contentType='application/json'
+        body=body, 
+        modelId='arn:aws:bedrock:us-east-1:959425594836:inference-profile/us.anthropic.claude-3-5-haiku-20241022-v1:0', 
+        accept='application/json', 
+        contentType='application/json'
     )
     
     response_body = json.loads(response.get('body').read())
@@ -123,9 +123,9 @@ def write_to_s3(new_data):
 
 def add_to_data(current_data, new_data):
     for element in current_data:
+        element['featured'] = "false"
         new_data.append(element)
     write_to_s3(new_data)
-
 
 def lambda_handler(event, context):
     data = read_from_s3()
@@ -137,8 +137,13 @@ def lambda_handler(event, context):
     elif MODEL_TYPE == 'mistral':
         model_response = call_mistral(nyt_response)
 
-    print(model_response)
-    add_to_data(data, json.loads(model_response[0]['text']))
+    new_data = json.loads(model_response[0]['text'])
+    for element in new_data:
+        element['featured'] = "true"
+
+    #print(new_data)
+
+    add_to_data(data, new_data)
 
     try:
         print("Job done.")
