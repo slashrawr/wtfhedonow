@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <title>wtfhedonow?!</title>
     <style>      
@@ -73,6 +74,11 @@
             background:#aaa;
             color:#000;
         }
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+        }
     </style>
     <script>
         // Fetch and populate table with JSON data
@@ -125,9 +131,9 @@
     <table id="data-table">
         <thead>
             <tr>
-                <th style="width: 20%;">Date</th>
+                <th style="width: 10%; text-align: center;"">Date</th>
                 <th style="width: auto;">Summary</th>
-                <th style="width: 20%; text-align: center;">Source</th>
+                <th style="width: 10%; text-align: center;">Source</th>
             </tr>
         </thead>
         <tbody>
@@ -145,7 +151,7 @@
         </div>
         <div>
             <h2>Repo</h2>
-            https://github.com/slashrawr/wtfhedonow
+            <a href="https://github.com/slashrawr/wtfhedonow"><i class="fa fa-github" style="font-size:36px"></i></a>
         </div>
       </div>
 </body>
