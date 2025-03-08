@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     
     <title>wtfhedonow?!</title>
-    <style>
-        
-        .newsreader-200 {
-        font-family: "Newsreader", serif;
+    <style>      
+        .roboto-200 {
+        font-family: "Roboto", sans-serif;
         font-optical-sizing: auto;
         font-weight: 200;
         font-style: normal;
+        font-variation-settings:
+            "wdth" 100;
         }
 
         body {
-            font-family: "Newsreader", serif;
+            font-family: "Roboto", sans-serif;
             text-align: center;
             margin: 20px;
         }
@@ -52,13 +54,13 @@
         }
 
         a {
-            
+            color: #000;
             text-decoration: none;
         }
 
         a:hover {
-            color: #888888;
-            text-decoration: underline;
+            color: #000;
+            text-decoration: none;
         }
 
         tbody tr {
@@ -68,8 +70,8 @@
         tbody tr:hover {
             cursor:pointer; 
             transform: scale(1.03);
-            background:#ccc;
-            color:#fff;
+            background:#aaa;
+            color:#000;
         }
     </style>
     <script>
@@ -125,12 +127,26 @@
             <tr>
                 <th style="width: 20%;">Date</th>
                 <th style="width: auto;">Summary</th>
-                <th style="width: 20%;">Source</th>
+                <th style="width: 20%; text-align: center;">Source</th>
             </tr>
         </thead>
         <tbody>
             <!-- Data will be inserted here dynamically -->
         </tbody>
     </table>
+    <div class="flex-container">
+        <div>
+            <h2>Model</h2>
+            us.anthropic.claude-3-5-haiku-20241022-v1:0
+        </div>
+        <div>
+            <h2>Prompt</h2>
+            You are an unbiased political analyst. You carefully analyse news articles every day as part of chronicling President Donald J. Trump's 2nd term. Below is a collection of articles from today. Summarise each article into a single sentence highlighting actions and activities by Donald J. Trump and his administration that are ethically questionable, potentially illegal, undermine American institutions and American constitution or would otherwise be considered "dumb" by any sensible individual. It is vital you are as objective as possible and do not embellish or read into details that are no there. Only include articles that are directly related to President Trump or his administration. If there is nothing improper, then ignore the article. Where articles describe the same thing, combine them into a single summary. Phrase summaries in the third person. Cite the respective article URL or set of URLs if articles are combined along with the summary. Leave out the preamble and postamble. Return the summaries in JSON format with the following schema: [ { "summary" : &lt;summary&gt;, "urls" : &lt;urls&gt; } ]
+        </div>
+        <div>
+            <h2>Repo</h2>
+            https://github.com/slashrawr/wtfhedonow
+        </div>
+      </div>
 </body>
 </html>
