@@ -116,6 +116,7 @@
                     const date = urlParts ? urlParts[0].replace(/\//g, ' ') : "N/A";
 
                     const card = document.createElement("div");
+                    card.setAttribute("class", "card")
                     card.innerHTML = `<a href="${url}" target="_blank">${entry.summary}</a>`;
                     articleContainer.appendChild(card);
 
