@@ -82,6 +82,9 @@
             width:80%;
             display: flex;
             flex-direction: column;
+            background-color: #555;
+            border-radius: 1.5rem;
+            margin: 0.1rem;
         }
     </style>
     <script>
@@ -113,10 +116,6 @@
                     const date = urlParts ? urlParts[0].replace(/\//g, ' ') : "N/A";
 
                     const card = document.createElement("div");
-                    card.style.width = "80%";
-                    card.style.backgroundColor = "#303030";
-                    card.style.borderRadius = "1.5rem";
-                    card.style.margin = "0.1rem";
                     card.innerHTML = `<a href="${url}" target="_blank">${entry.summary}</a>`;
                     articleContainer.appendChild(card);
 
