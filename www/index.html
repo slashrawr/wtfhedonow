@@ -79,6 +79,18 @@
             display: flex;
             flex-direction: row;
         }
+
+        .flex-article-container {
+            width:80%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flex-article-container .card {
+            width:80%;
+            display: flex;
+            flex-direction: column;
+        }
     </style>
     <script>
         // Fetch and populate table with JSON data
@@ -97,10 +109,18 @@
                 
                 const data = await fetchResponse.json();
 
+                const articleContainer = document.getElementById("article-container");
+
                 const tableBody = document.querySelector("#data-table tbody");
                 tableBody.innerHTML = ""; // Clear existing content
 
                 data.forEach(entry => {
+                    const card = document.createElement("div");
+                    card.style.width = "80%";
+                    card.style.backgroundColor = "#303030";
+                    card.innerHTML = `<a href="${url}" target="_blank">${entry.summary}</a>`
+                    articleContainer.appendChild(card);
+
                     const row = document.createElement("tr");
 
                     // Extracting date from the first URL
@@ -128,6 +148,9 @@
 <body>
     <h1>wtfhedonow?!</h1>
     <p>A summary of recent actions and decisions made by the Trump administration.</p>
+    <div id="article-container" class="flex-article-container">
+
+    </div>
     <table id="data-table">
         <thead>
             <tr>
@@ -147,7 +170,7 @@
         </div>
         <div>
             <h2>Prompt</h2>
-            You are an unbiased political analyst. You carefully analyse news articles every day as part of chronicling President Donald J. Trump's 2nd term. Below is a collection of articles from today. Summarise each article into a single sentence highlighting actions and activities by Donald J. Trump and his administration that are ethically questionable, potentially illegal, undermine American institutions and American constitution or would otherwise be considered "dumb" by any sensible individual. It is vital you are as objective as possible and do not embellish or read into details that are no there. Only include articles that are directly related to President Trump or his administration. If there is nothing improper, then ignore the article. Where articles describe the same thing, combine them into a single summary. Phrase summaries in the third person. Cite the respective article URL or set of URLs if articles are combined along with the summary. Leave out the preamble and postamble. Return the summaries in JSON format with the following schema: [ { "summary" : &lt;summary&gt;, "urls" : &lt;urls&gt; } ]
+            You are an unbiased political analyst. You carefully analyse news articles every day as part of chronicling President Donald J. Trump's 2nd term. Below is a collection of articles from today. Summarise each article into a single sentence highlighting actions and activities by Donald J. Trump, Elon Musk and his administration that are ethically questionable, potentially illegal, undermine American institutions and American constitution or would otherwise be considered "dumb" by any sensible individual. It is vital you are as objective as possible and do not embellish or read into details that are not there. Only include articles that are directly related to President Trump, Elon Musk or his administration. If there is nothing improper, then ignore the article. Where articles describe the same thing, combine them into a single summary. Phrase summaries in the third person. Cite the respective article URL or set of URLs if articles are combined along with the summary. Provide an assessment of severity (LOW, MED, HIGH) of the implications of the actions or activities reported in the articles. Identify a list of key "tags" for each entry. Leave out the preamble and postamble. Return the summaries in JSON format with the following schema: [ { "summary" : &lt;summary&gt;, "urls" : [&lt;urls&gt;], "severity" : &lt;severity&gt;, "tags" : [&lt;tags&gt;] } ]
         </div>
         <div>
             <h2>Repo</h2>
