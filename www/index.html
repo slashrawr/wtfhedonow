@@ -116,7 +116,8 @@
                     articleContainer.appendChild(card);
 
                     const row = document.createElement("tr");
-
+                    console.log(entry);
+                    
                     // Extracting date from the first URL
                     const url = entry.urls[0];
                     const urlParts = url.match(/\d{4}\/\d{2}\/\d{2}/);
