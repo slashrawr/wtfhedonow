@@ -83,8 +83,10 @@
             display: flex;
             flex-direction: column;
             background-color: #555;
+            color: #f4f4f4;
             border-radius: 1.5rem;
             margin: 0.1rem;
+            padding: 0.1rem;
         }
     </style>
     <script>
@@ -116,7 +118,7 @@
                     const date = urlParts ? urlParts[0].replace(/\//g, ' ') : "N/A";
 
                     const card = document.createElement("div");
-                    card.setAttribute("class", "card")
+                    card.classList.add("card");
                     card.innerHTML = `<a href="${url}" target="_blank">${entry.summary}</a>`;
                     articleContainer.appendChild(card);
 
@@ -141,9 +143,9 @@
 </head>
 <body>
     <h1>wtfhedonow?!</h1>
-    <p>A summary of recent actions and decisions made by the Trump administration.</p>
+    <p>A summary of recent actions and decisions made by the Trump/Musk administration.</p>
     <div id="article-container" class="flex-article-container">
-
+        <!-- Data will be inserted here dynamically -->
     </div>
     <table id="data-table">
         <thead>
