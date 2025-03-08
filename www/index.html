@@ -87,6 +87,26 @@
             height: 5.0rem;
             box-shadow: 0 -0.1rem 0.5rem rgba(0 0 0 / 0.15);
         }
+
+        .card-content {
+            margin-bottom: 1rem;
+        }
+
+        .card-date {
+
+        }
+
+        .card-info {
+            
+        }
+
+        .card-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+        }
     </style>
     <script>
         // Fetch and populate table with JSON data
@@ -118,7 +138,19 @@
 
                     const card = document.createElement("div");
                     card.classList.add("card");
-                    card.innerHTML = `<a href="${url}" target="_blank">${entry.summary}</a>`;
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <div class="card-date">${date}</div>
+                            <div class="card-info">
+                                <a href="${url}" target="_blank">${entry.summary}</a>
+                            </div>
+                            <div class="card-tags">
+                            ${entry.tags.map(tag => `
+                                <span class="card-tag">#${tag}</span>
+                            `).join('')}
+                        </div>    
+                        `;
+                            
                     articleContainer.appendChild(card);
 
                     const row = document.createElement("tr");

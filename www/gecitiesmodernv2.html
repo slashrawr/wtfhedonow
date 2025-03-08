@@ -1,0 +1,934 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <title>wtfhedonow?! - Trump Watch 2025</title>
+    <style>      
+        :root {
+            --neon-pink: #ff71ce;
+            --neon-blue: #01cdfe;
+            --neon-green: #05ffa1;
+            --neon-purple: #b967ff;
+            --neon-yellow: #fffb96;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f0f0f0;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --glass-effect: rgba(255, 255, 255, 0.05);
+            --text-color: #ffffff;
+            --text-color-dark: #1a1a1a;
+        }
+
+        [data-theme="light"] {
+            --dark-bg: #f0f0f0;
+            --glass-effect: rgba(0, 0, 0, 0.05);
+            --text-color: #1a1a1a;
+            --card-bg: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modern starfield with parallax effect */
+        @keyframes move-stars-1 {
+            from { transform: translateZ(0) translateY(0); }
+            to { transform: translateZ(0) translateY(1000px); }
+        }
+
+        @keyframes move-stars-2 {
+            from { transform: translateZ(-10px) translateY(-1000px) translateX(100px); }
+            to { transform: translateZ(-10px) translateY(1000px) translateX(-100px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-blue); }
+            50% { text-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-pink); }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+            z-index: -1;
+            background: var(--dark-bg);
+        }
+
+        .stars:before, .stars:after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--neon-blue), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, var(--neon-pink), rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 50px 160px, var(--neon-purple), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, var(--neon-green), rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 130px 80px, var(--neon-yellow), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 400px 400px;
+            animation: move-stars-1 60s linear infinite;
+            opacity: 0.5;
+        }
+
+        .stars:after {
+            transform-style: preserve-3d;
+            animation: move-stars-2 40s linear infinite;
+            opacity: 0.3;
+        }
+
+        body {
+            font-family: 'VT323', monospace;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 2rem 0;
+            animation: glow 3s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-wrapper::before,
+        .glitch-wrapper::after {
+            content: 'wtfhedonow?!';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch-wrapper::before {
+            color: var(--neon-pink);
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            transform: translate3d(-5px,0,0);
+        }
+
+        .glitch-wrapper::after {
+            color: var(--neon-blue);
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) reverse both infinite;
+            transform: translate3d(5px,0,0);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: white;
+            background: var(--glass-effect);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .flex-article-container {
+            width: 95%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) rotateX(5deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .severity-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 5px var(--neon-pink));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        table {
+            width: 90%;
+            margin: 2rem auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--neon-green);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            padding: 1rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .visitor-counter {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--neon-yellow);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            margin: 2rem auto;
+            text-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        marquee {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-green);
+            font-size: 1rem;
+            margin: 1rem 0;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .browser-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .browser-badge {
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: var(--neon-blue);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .browser-badge i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .flex-article-container {
+                grid-template-columns: 1fr;
+            }
+
+            .browser-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Loading animation */
+        @keyframes loading {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--glass-effect);
+            border-top-color: var(--neon-pink);
+            border-radius: 50%;
+            animation: loading 1s infinite;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            font-size: 1.5rem;
+            color: var(--neon-yellow);
+            transition: all 0.3s ease;
+        }
+
+        /* Scroll progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--glass-effect);
+            z-index: 1000;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+
+        /* Enhanced table styles */
+        .table-container {
+            position: relative;
+            width: 90%;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .table-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .severity-high {
+            animation: pulse 2s infinite;
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            color: var(--text-color);
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Stats counter */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-pink);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-color);
+        }
+
+        /* Filter tags styles */
+        .filter-container {
+            width: 95%;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .filter-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            color: var(--neon-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .filter-tag {
+            background: var(--glass-effect);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-tag:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+        }
+
+        .filter-tag.active {
+            background: var(--neon-pink);
+            color: var(--dark-bg);
+        }
+
+        /* Enhanced card styles */
+        .card-content {
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-right: 3rem;
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: var(--neon-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .card-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+        }
+
+        .card.hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.documentElement;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update theme toggle icon
+            const themeIcon = document.querySelector('.theme-toggle i');
+            themeIcon.className = newTheme === 'light' ? 'fa fa-moon-o' : 'fa fa-sun-o';
+        }
+
+        // Scroll progress
+        function updateProgress() {
+            const scroll = window.scrollY;
+            const height = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scroll / height) * 100;
+            document.querySelector('.progress').style.width = `${progress}%`;
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Keywords mapping
+        const keywordMap = {
+            'environment': ['environmental', 'climate', 'protection'],
+            'politics': ['executive order', 'administration', 'constitutional'],
+            'justice': ['judicial', 'illegal', 'unlawfully'],
+            'media': ['press', 'social media', 'regulation'],
+            'immigration': ['immigration', 'human rights'],
+            'international': ['diplomatic', 'relations'],
+            'science': ['scientific', 'research'],
+            'economy': ['funding', 'economic']
+        };
+
+        // Get keywords from text
+        function getKeywords(text) {
+            const keywords = [];
+            Object.entries(keywordMap).forEach(([category, terms]) => {
+                if (terms.some(term => text.toLowerCase().includes(term.toLowerCase()))) {
+                    keywords.push(category);
+                }
+            });
+            return keywords;
+        }
+
+        // Filter cards
+        function filterCards(tag) {
+            const cards = document.querySelectorAll('.card');
+            const filterTag = document.querySelector(`[data-tag="${tag}"]`);
+            const isActive = filterTag.classList.toggle('active');
+            
+            const activeFilters = Array.from(document.querySelectorAll('.filter-tag.active'))
+                .map(tag => tag.getAttribute('data-tag'));
+
+            cards.forEach(card => {
+                const cardTags = card.getAttribute('data-tags').split(',');
+                card.classList.toggle('hidden', 
+                    activeFilters.length > 0 && !activeFilters.some(filter => cardTags.includes(filter))
+                );
+            });
+        }
+
+        // Enhanced severity mapping
+        function getSeverityDetails(text) {
+            // Keywords that might indicate severity
+            const highSeverityKeywords = ['illegal', 'unlawfully', 'undermining', 'crisis', 'threatening', 'severe'];
+            const mediumSeverityKeywords = ['potentially', 'concerns', 'uncertain', 'controversial', 'questionable'];
+            
+            text = text.toLowerCase();
+            
+            // Count matches for each severity level
+            const highCount = highSeverityKeywords.filter(word => text.includes(word)).length;
+            const medCount = mediumSeverityKeywords.filter(word => text.includes(word)).length;
+            
+            // Determine severity based on keyword matches
+            if (highCount >= 2 || text.includes('illegal') || text.includes('unlawfully')) {
+                const level = 'high';
+                const emoji = '🔥';
+                const color = 'var(--severity-high)';
+                showToast('⚠️ High severity item detected!');
+                return { level, emoji, color };
+            } else if (highCount === 1 || medCount >= 2) {
+                const level = 'medium';
+                const emoji = '⚠️';
+                const color = 'var(--severity-medium)';
+                return { level, emoji, color };
+            } else {
+                const level = 'low';
+                const emoji = '⚡';
+                const color = 'var(--severity-low)';
+                return { level, emoji, color };
+            }
+        }
+
+        // Fallback data for demonstration
+        const dummyData = [
+            {
+                summary: "Executive Order signed undermining environmental protections and climate agreements",
+                urls: ["https://example.com/2025/01/15/climate-order"],
+                date: "2025 01 15"
+            },
+            {
+                summary: "Controversial media regulation policy potentially limiting press freedom",
+                urls: ["https://example.com/2025/01/14/media-policy"],
+                date: "2025 01 14"
+            },
+            {
+                summary: "New immigration enforcement directive raises human rights concerns",
+                urls: ["https://example.com/2025/01/13/immigration"],
+                date: "2025 01 13"
+            },
+            {
+                summary: "Federal funding cuts to scientific research programs",
+                urls: ["https://example.com/2025/01/12/science-cuts"],
+                date: "2025 01 12"
+            },
+            {
+                summary: "Illegal attempt to interfere with judicial proceedings revealed",
+                urls: ["https://example.com/2025/01/11/judicial-interference"],
+                date: "2025 01 11"
+            },
+            {
+                summary: "Executive branch restructuring raises constitutional questions",
+                urls: ["https://example.com/2025/01/10/restructure"],
+                date: "2025 01 10"
+            },
+            {
+                summary: "Crisis emerges as key diplomatic relations severely strained",
+                urls: ["https://example.com/2025/01/09/diplomatic-crisis"],
+                date: "2025 01 09"
+            },
+            {
+                summary: "New executive order on social media regulation",
+                urls: ["https://example.com/2025/01/08/social-media"],
+                date: "2025 01 08"
+            }
+        ];
+
+        // Enhanced loadTableData
+        async function loadTableData() {
+            document.querySelector('.loading').style.display = 'flex';
+            try {
+                const fetchResponse = await fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
+                    {
+                        method: 'GET',
+                        mode: 'cors',
+                        headers: {
+                            'Origin': 'https://main.d392p52lqd4u4c.amplifyapp.com',
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+                
+                const data = await fetchResponse.json();
+                populateContent(data);
+            } catch (error) {
+                console.error("Error loading data:", error);
+                showToast('Using demo data for display');
+                populateContent(dummyData);
+            } finally {
+                document.querySelector('.loading').style.display = 'none';
+            }
+        }
+
+        function populateContent(data) {
+            const articleContainer = document.getElementById("article-container");
+            const tableBody = document.querySelector("#data-table tbody");
+            const filterContainer = document.querySelector('.filter-tags');
+            
+            // Clear existing content
+            articleContainer.innerHTML = "";
+            tableBody.innerHTML = "";
+            
+            // Collect all unique keywords
+            const allKeywords = new Set();
+            data.forEach(entry => {
+                const keywords = getKeywords(entry.summary);
+                keywords.forEach(keyword => allKeywords.add(keyword));
+            });
+
+            // Create filter tags
+            allKeywords.forEach(keyword => {
+                const tag = document.createElement('div');
+                tag.className = 'filter-tag';
+                tag.setAttribute('data-tag', keyword);
+                tag.textContent = keyword.charAt(0).toUpperCase() + keyword.slice(1);
+                tag.onclick = () => filterCards(keyword);
+                filterContainer.appendChild(tag);
+            });
+
+            // Update stats
+            const stats = {
+                total: data.length,
+                high: data.filter(item => getSeverityDetails(item.summary).level === 'high').length,
+                medium: data.filter(item => getSeverityDetails(item.summary).level === 'medium').length
+            };
+            
+            updateStats(stats);
+
+            data.forEach(entry => {
+                const date = entry.date || "N/A";
+                const severityDetails = getSeverityDetails(entry.summary);
+                const url = entry.urls[0];
+                const keywords = getKeywords(entry.summary);
+
+                // Create card
+                const card = document.createElement("div");
+                card.setAttribute("class", `card severity-${severityDetails.level}`);
+                card.setAttribute("data-tags", keywords.join(','));
+                card.innerHTML = `
+                    <div class="card-content">
+                        <div class="severity-indicator" title="Severity: ${severityDetails.level.toUpperCase()}">${severityDetails.emoji}</div>
+                        <div class="card-date">${date}</div>
+                        <div class="card-title">
+                            <a href="${url}" target="_blank">${entry.summary}</a>
+                        </div>
+                        <div class="card-tags">
+                            ${keywords.map(tag => `
+                                <span class="card-tag">#${tag}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                articleContainer.appendChild(card);
+
+                // Create table row
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td><a href="${url}" target="_blank">${date}</a></td>
+                    <td>
+                        <span style="margin-right: 8px;">${severityDetails.emoji}</span>
+                        <a href="${url}" target="_blank">${entry.summary}</a>
+                        <div class="card-tags" style="margin-top: 0.5rem;">
+                            ${keywords.map(tag => `
+                                <span class="card-tag">#${tag}</span>
+                            `).join('')}
+                        </div>
+                    </td>
+                    <td style="text-align: center;">
+                        <a href="${url}" target="_blank" style="color: var(--neon-green);">
+                            <i class="fa fa-external-link"></i>
+                        </a>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        function updateStats(stats) {
+            document.getElementById('total-items').textContent = stats.total;
+            document.getElementById('high-severity').textContent = stats.high;
+            document.getElementById('medium-severity').textContent = stats.medium;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme initialization
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Scroll progress
+            window.addEventListener('scroll', updateProgress);
+            
+            // Load data
+            loadTableData();
+        });
+    </script>
+</head>
+<body>
+    <div class="loading"></div>
+    <div class="progress-bar"><div class="progress"></div></div>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fa fa-sun-o"></i>
+    </div>
+    
+    <div class="stars"></div>
+    
+    <div class="glitch-wrapper">
+        <h1>wtfhedonow?!</h1>
+    </div>
+    
+    <marquee behavior="alternate" scrollamount="3">
+        <i class="fa fa-warning"></i> BREAKING NEWS: Tracking Trump's Second Term - Updated Daily! <i class="fa fa-warning"></i>
+    </marquee>
+    
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-value" id="total-items">0</div>
+            <div class="stat-label">Total Items</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="high-severity">0</div>
+            <div class="stat-label">High Severity</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" id="medium-severity">0</div>
+            <div class="stat-label">Medium Severity</div>
+        </div>
+    </div>
+    
+    <p>
+        <i class="fa fa-newspaper-o"></i> A comprehensive chronicle of actions and decisions from the current administration, 
+        presented in a modern retro-future aesthetic. Welcome to the digital archive.
+    </p>
+    
+    <div class="filter-container">
+        <div class="filter-title">Filter by Topic</div>
+        <div class="filter-tags">
+            <!-- Dynamically populated by JavaScript -->
+        </div>
+    </div>
+    
+    <div id="article-container" class="flex-article-container">
+        <!-- Dynamically populated by JavaScript -->
+    </div>
+    
+    <div class="table-container">
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%; text-align: center;">
+                        <i class="fa fa-calendar"></i> Date
+                    </th>
+                    <th style="width: auto;">
+                        <i class="fa fa-file-text"></i> Summary
+                    </th>
+                    <th style="width: 10%; text-align: center;">
+                        <i class="fa fa-link"></i> Source
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamically populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="visitor-counter">
+        <i class="fa fa-eye"></i> Visitors: 000042069
+    </div>
+    
+    <div class="browser-badges">
+        <div class="browser-badge">
+            <i class="fa fa-chrome"></i> Chrome Optimized
+        </div>
+        <div class="browser-badge">
+            <i class="fa fa-firefox"></i> Firefox Ready
+        </div>
+        <div class="browser-badge">
+            <i class="fa fa-safari"></i> Safari Compatible
+        </div>
+    </div>
+</body>
+</html>

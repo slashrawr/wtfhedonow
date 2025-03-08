@@ -1,0 +1,456 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <title>wtfhedonow?! - Trump Watch 2025</title>
+    <style>      
+        :root {
+            --neon-pink: #ff71ce;
+            --neon-blue: #01cdfe;
+            --neon-green: #05ffa1;
+            --neon-purple: #b967ff;
+            --neon-yellow: #fffb96;
+            --dark-bg: #1a1a1a;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --glass-effect: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Modern starfield with parallax effect */
+        @keyframes move-stars-1 {
+            from { transform: translateZ(0) translateY(0); }
+            to { transform: translateZ(0) translateY(1000px); }
+        }
+
+        @keyframes move-stars-2 {
+            from { transform: translateZ(-10px) translateY(-1000px) translateX(100px); }
+            to { transform: translateZ(-10px) translateY(1000px) translateX(-100px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-blue); }
+            50% { text-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-pink); }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+            z-index: -1;
+            background: var(--dark-bg);
+        }
+
+        .stars:before, .stars:after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--neon-blue), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, var(--neon-pink), rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 50px 160px, var(--neon-purple), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, var(--neon-green), rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 130px 80px, var(--neon-yellow), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 400px 400px;
+            animation: move-stars-1 60s linear infinite;
+            opacity: 0.5;
+        }
+
+        .stars:after {
+            transform-style: preserve-3d;
+            animation: move-stars-2 40s linear infinite;
+            opacity: 0.3;
+        }
+
+        body {
+            font-family: 'VT323', monospace;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 2rem 0;
+            animation: glow 3s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-wrapper::before,
+        .glitch-wrapper::after {
+            content: 'wtfhedonow?!';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch-wrapper::before {
+            color: var(--neon-pink);
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            transform: translate3d(-5px,0,0);
+        }
+
+        .glitch-wrapper::after {
+            color: var(--neon-blue);
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) reverse both infinite;
+            transform: translate3d(5px,0,0);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: white;
+            background: var(--glass-effect);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .flex-article-container {
+            width: 95%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .card {
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            color: white;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                transparent 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .severity-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 5px var(--neon-pink));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        table {
+            width: 90%;
+            margin: 2rem auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--neon-green);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            padding: 1rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .visitor-counter {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--neon-yellow);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            margin: 2rem auto;
+            text-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        marquee {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--neon-green);
+            font-size: 1rem;
+            margin: 1rem 0;
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .browser-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .browser-badge {
+            background: var(--glass-effect);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: var(--neon-blue);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .browser-badge i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .flex-article-container {
+                grid-template-columns: 1fr;
+            }
+
+            .browser-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <script>
+        // Severity mapping function
+        function getSeverityDetails(text) {
+            // Keywords that might indicate severity
+            const highSeverityKeywords = ['illegal', 'unlawfully', 'undermining', 'crisis', 'threatening', 'severe'];
+            const mediumSeverityKeywords = ['potentially', 'concerns', 'uncertain', 'controversial', 'questionable'];
+            
+            text = text.toLowerCase();
+            
+            // Count matches for each severity level
+            const highCount = highSeverityKeywords.filter(word => text.includes(word)).length;
+            const medCount = mediumSeverityKeywords.filter(word => text.includes(word)).length;
+            
+            // Determine severity based on keyword matches
+            if (highCount >= 2 || text.includes('illegal') || text.includes('unlawfully')) {
+                return {
+                    level: 'high',
+                    emoji: '🔥',
+                    color: 'var(--severity-high)'
+                };
+            } else if (highCount === 1 || medCount >= 2) {
+                return {
+                    level: 'medium',
+                    emoji: '⚠️',
+                    color: 'var(--severity-medium)'
+                };
+            } else {
+                return {
+                    level: 'low',
+                    emoji: '⚡',
+                    color: 'var(--severity-low)'
+                };
+            }
+        }
+
+        // Fetch and populate table with JSON data
+        async function loadTableData() {
+            try {
+                const fetchResponse = await fetch('https://rawr-generic-bucket.s3.us-east-1.amazonaws.com/wtfhedonow/data.json',
+                    {
+                        method: 'GET',
+                        mode: 'cors',
+                        headers: {
+                            'Origin': 'https://main.d392p52lqd4u4c.amplifyapp.com',
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+                
+                const data = await fetchResponse.json();
+
+                const articleContainer = document.getElementById("article-container");
+
+                const tableBody = document.querySelector("#data-table tbody");
+                tableBody.innerHTML = ""; // Clear existing content
+
+                data.forEach(entry => {
+                    // Extracting date from the first URL
+                    const url = entry.urls[0];
+                    const urlParts = url.match(/\d{4}\/\d{2}\/\d{2}/);
+                    const date = urlParts ? urlParts[0].replace(/\//g, ' ') : "N/A";
+
+                    // Get severity details
+                    const severityDetails = getSeverityDetails(entry.summary);
+
+                    const card = document.createElement("div");
+                    card.setAttribute("class", `card severity-${severityDetails.level}`);
+                    card.innerHTML = `
+                        <div class="severity-indicator" title="Severity: ${severityDetails.level.toUpperCase()}">${severityDetails.emoji}</div>
+                        <a href="${url}" target="_blank">${entry.summary}</a>
+                    `;
+                    articleContainer.appendChild(card);
+
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td><a href="${url}" target="_blank">${date}</a></td>
+                        <td>
+                            <span style="margin-right: 8px;">${severityDetails.emoji}</span>
+                            <a href="${url}" target="_blank">${entry.summary}</a>
+                        </td>
+                        <td>${entry.urls.forEach(url => `<a href="${url}" target="_blank">Source</a>`)}</td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error loading data:", error);
+            }
+        }
+
+        // Load data on page load
+        window.onload = loadTableData;
+    </script>
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <div class="glitch-wrapper">
+        <h1>wtfhedonow?!</h1>
+    </div>
+    
+    <marquee behavior="alternate" scrollamount="3">
+        <i class="fa fa-warning"></i> BREAKING NEWS: Tracking Trump's Second Term - Updated Daily! <i class="fa fa-warning"></i>
+    </marquee>
+    
+    <p>
+        <i class="fa fa-newspaper-o"></i> A comprehensive chronicle of actions and decisions from the current administration, 
+        presented in a modern retro-future aesthetic. Welcome to the digital archive.
+    </p>
+    
+    <div id="article-container" class="flex-article-container">
+        <!-- Dynamically populated by JavaScript -->
+    </div>
+    
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th style="width: 10%; text-align: center;">
+                    <i class="fa fa-calendar"></i> Date
+                </th>
+                <th style="width: auto;">
+                    <i class="fa fa-file-text"></i> Summary
+                </th>
+                <th style="width: 10%; text-align: center;">
+                    <i class="fa fa-link"></i> Source
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamically populated by JavaScript -->
+        </tbody>
+    </table>
+    
+    <div class="visitor-counter">
+        <i class="fa fa-eye"></i> Visitors: 000042069
+    </div>
+    
+    <div class="browser-badges">
+        <div class="browser-badge">
+            <i class="fa fa-chrome"></i> Chrome Optimized
+        </div>
+        <div class="browser-badge">
+            <i class="fa fa-firefox"></i> Firefox Ready
+        </div>
+        <div class="browser-badge">
+            <i class="fa fa-safari"></i> Safari Compatible
+        </div>
+    </div>
+</body>
+</html>
