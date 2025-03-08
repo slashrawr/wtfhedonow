@@ -124,7 +124,7 @@
                     row.innerHTML = `
                         <td><a href="${url}" target="_blank">${date}</a></td>
                         <td><a href="${url}" target="_blank">${entry.summary}</a></td>
-                        <td>${entry.urls.forEach(url => `<a href="${url}" target="_blank">Source</a>`).join("\n")}</td>
+                        <td>${entry.urls.forEach(url => `<a href="${url}" target="_blank">Source</a>`)}</td>
                     `;
 
                     tableBody.appendChild(row);
