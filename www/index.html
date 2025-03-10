@@ -17,7 +17,7 @@
 
         h1 {
             margin-bottom: 10px;
-            font-size: x-large;
+            font-size: 48px;
         }
 
         p {
@@ -91,7 +91,7 @@
             width: 30%;
             display: flex;
             flex-direction: column;
-            background-color: #fffff0;
+            background-color: #f0f0f0;
             color: #333;
             border-radius: 1.0rem;
             margin: 0.2rem;
@@ -113,12 +113,12 @@
         }
 
         .card-severity {
-            padding: 1rem 0;
+            padding: 1rem 0 0 0;
+            font-size: 2rem;
         }
 
         .card-tags {
             padding: 2em 0;
-            font-size: large;
         }
 
         .card-tag {
@@ -156,7 +156,7 @@
                     // Extracting date from the first URL
                     const url = entry.urls[0];
 
-                    const date = entry.date.slice(0,4) + "-" + entry.date.slice(5,6) + "-" + entry.date.slice(7,8);
+                    const date = entry.date.slice(0,4) + "-" + entry.date.slice(4,6) + "-" + entry.date.slice(6,8);
                     const severity = (entry.severity == "LOW")  ? "🚨" : (entry.severity == "MED") ? "🚨🚨" : (entry.severity == "HIGH") ? "🚨🚨🚨" : "";
 
                     if (entry.featured == "true") 
@@ -190,8 +190,8 @@
                     const row = document.createElement("tr");
 
                     row.innerHTML = `
-                        <td><a href="${url}" target="_blank">${date}</a></td>
-                        <td><a href="${url}" target="_blank">${entry.summary}</a></td>
+                        <td style="text-align: center;">${date}</td>
+                        <td>${entry.summary}</td>
                         <td style="text-align: center;">${entry.urls.map(url => `<a href="${url}" target="_blank">Source</a>`).join('<br>')}</td>
                     `;
 
