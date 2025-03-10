@@ -17,6 +17,7 @@
 
         h1 {
             margin-bottom: 10px;
+            font-size: x-large;
         }
 
         p {
@@ -90,7 +91,7 @@
             width: 30%;
             display: flex;
             flex-direction: column;
-            background-color: #fee;
+            background-color: #fffff0;
             color: #333;
             border-radius: 1.0rem;
             margin: 0.2rem;
@@ -117,15 +118,16 @@
 
         .card-tags {
             padding: 2em 0;
+            font-size: large;
         }
 
         .card-tag {
-            background: rgb(94, 189, 240);
+            background: #222222;
             border-radius: 15px;
             margin: 0.3rem 0 0 0;
             padding: 0.2rem 0.8rem;
             font-size: 0.8rem;
-            color: #333;
+            color: #fff;
         }
     </style>
     <script>
@@ -153,11 +155,9 @@
                 data.forEach(entry => {
                     // Extracting date from the first URL
                     const url = entry.urls[0];
-                    //const urlParts = url.match(/\d{4}\/\d{2}\/\d{2}/);
-                    //const date = urlParts ? urlParts[0].replace(/\//g, '-') : "N/A";
 
-                    const date = entry.date;
-                    const severity = (entry.severity == "LOW")  ? "🔥" : (entry.severity == "MED") ? "🔥🔥" : (entry.severity == "HIGH") ? "🔥🔥🔥" : "";
+                    const date = entry.date.slice(0,4) + "-" + entry.date.slice(5,6) + "-" + entry.date.slice(7,8);
+                    const severity = (entry.severity == "LOW")  ? "🚨" : (entry.severity == "MED") ? "🚨🚨" : (entry.severity == "HIGH") ? "🚨🚨🚨" : "";
 
                     if (entry.featured == "true") 
                     {
@@ -170,7 +170,8 @@
                                     <a href="${url}" target="_blank">${entry.summary}</a>
                                 </div>
                                 <div class="card-severity">
-                                    <div class="severity-indicator" title="Severity: ${entry.severity.toUpperCase()}">${severity}</div>
+                                    <span>Alarm Level</span>
+                                    <div class="severity-indicator" title="Alarm Level: ${entry.severity.toUpperCase()}">${severity}</div>
                                 </div>
                                 <div class="card-tags">
                                     ${entry.tags.map(tag => `
