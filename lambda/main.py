@@ -30,11 +30,11 @@ BRANCH = os.environ['branch']
 S3_BUCKET = os.environ['s3_bucket']
 S3_KEY_DATA_FILE = os.environ['s3_key_data_file']
 
-PROMPT = "You are an unbiased political analyst. You carefully analyse news articles every day as part of chronicling President Donald J. Trump's 2nd term. Below is a collection of articles from today. Summarise each article into a single sentence highlighting actions and activities by Donald J. Trump, Elon Musk and his administration that are ethically questionable, potentially illegal, undermine American institutions and American constitution or would otherwise be considered \"dumb\" by any sensible individual. It is vital you are as objective as possible and do not embellish or read into details that are not there. Only include articles that are directly related to President Trump, Elon Musk or his administration. If there is nothing improper, then ignore the article. Where articles describe the same thing, combine them into a single summary. Phrase summaries in the third person. Keep the summaries succinct. Cite the respective article URL or set of URLs if articles are combined along with the summary. Provide an assessment of severity (LOW, MED, HIGH) of the implications of the actions or activities reported in the articles. Identify a list of key one word \"tags\" for each entry. Leave out the preamble and postamble. Return the summaries in JSON format with the following schema: [ { \"summary\" : <summary>, \"urls\" : [<urls>], \"severity\" : <severity>, \"tags\" : [<tags>] } ]"
+PROMPT = "You are an unbiased political analyst. You carefully analyse news articles every day as part of chronicling President Donald J. Trump's 2nd term. Below is a collection of articles from today. Summarise each article into a single succinct sentence highlighting actions and activities by Donald J. Trump and his administration, including Elon Musk's DOGE, that are ethically/morally questionable, potentially illegal, and that undermine American institutions and the American constitution or would otherwise be considered \"dumb\" by any sensible or reasonable individual. It is vital you are as objective as possible and do not embellish or read into details that are not there. Only include articles that are directly related to President Trump, his administration, Elon Musk or DOGE. If there is nothing questionable or improper, then ignore the article. Where articles describe the same thing, combine them into a single summary. Phrase summaries in the third person. Cite the respective article URL or set of URLs if articles are combined along with the summary. Provide an assessment of severity (LOW, MED, HIGH) of the implications of the actions or activities reported in the articles on American democracy, the global order, and the rule of law. Identify a list of key one word \"tags\" for each entry. Leave out the preamble and postamble. Return the summaries in JSON format with the following schema: [ { \"summary\" : <summary>, \"urls\" : [<urls>], \"severity\" : <severity>, \"tags\" : [<tags>] } ]"
 
-def call_nyt():
+def call_nyt(search_date):
     try:
-        current_date = date.today().strftime("%Y%m%d")
+        current_date = search_date 
         query_params = {"api-key": NYT_API_KEY,
                    "begin_date": current_date,
                    "end_date": current_date,
@@ -48,6 +48,7 @@ def call_nyt():
         for item in response.json()["response"]["docs"]:
             #print(json.dumps(item) + "\n")
             article = {"url": item["web_url"], "abstract": item["abstract"] + item["lead_paragraph"]}
+            print(article)
             articles.append(article)           
 
         return articles
@@ -115,7 +116,6 @@ def read_from_s3():
     content_object = s3.Object(S3_BUCKET, S3_KEY_DATA_FILE)
     file_content = content_object.get()['Body'].read().decode('utf-8')
     return json.loads(file_content)
-    print(data)
 
 def write_to_s3(new_data):
     content_object = s3.Object(S3_BUCKET, S3_KEY_DATA_FILE)
@@ -128,8 +128,14 @@ def add_to_data(current_data, new_data):
     write_to_s3(new_data)
 
 def lambda_handler(event, context):
+
+    search_date = date.today().strftime("%Y%m%d")
+
+    if ("search_date" in event):
+        search_date = event['search_date']
+
     data = read_from_s3()
-    nyt_response = call_nyt()
+    nyt_response = call_nyt(search_date)
     model_response = None
 
     if MODEL_TYPE == 'claude':
@@ -137,13 +143,15 @@ def lambda_handler(event, context):
     elif MODEL_TYPE == 'mistral':
         model_response = call_mistral(nyt_response)
 
-    new_data = json.loads(model_response[0]['text'])
-    for element in new_data:
-        element['featured'] = "true"
+    print(model_response)
+    if (len(model_response) > 0):
+        new_data = json.loads(model_response[0]['text'])
+        for element in new_data:
+            element['featured'] = "true"
 
-    #print(new_data)
+        #print(new_data)
 
-    add_to_data(data, new_data)
+        add_to_data(data, new_data)
 
     try:
         print("Job done.")

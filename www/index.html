@@ -25,10 +25,7 @@
         table {
             margin: 2rem auto;
             width: 80%;
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 1rem;
+            border-radius: 15px;
             border-collapse: separate;
             border-spacing: 0;
             backdrop-filter: blur(10px);
@@ -64,7 +61,7 @@
 
         tbody tr:hover {
             cursor:pointer; 
-            transform: scale(1.03);
+            transform: scale(1.02);
             background:#aaa;
             color:#000;
         }
@@ -89,14 +86,14 @@
         }
 
         .card {
-            width: 300px;
+            width: 30%;
             display: flex;
             flex-direction: column;
-            background-color: #eee;
+            background-color: #fee;
             color: #333;
             border-radius: 1.0rem;
             margin: 0.2rem;
-            padding: 1rem 0 1 0;
+            padding: 1rem 0;
             box-shadow: 0.8rem 0.4rem 0.4rem rgba(0 0 0 / 0.15);
         }
 
@@ -154,10 +151,11 @@
 
                 data.forEach(entry => {
                     // Extracting date from the first URL
-                    const url = entry.urls[0];
-                    const urlParts = url.match(/\d{4}\/\d{2}\/\d{2}/);
-                    const date = urlParts ? urlParts[0].replace(/\//g, '-') : "N/A";
-
+                    //const url = entry.urls[0];
+                    //const urlParts = url.match(/\d{4}\/\d{2}\/\d{2}/);
+                    //const date = urlParts ? urlParts[0].replace(/\//g, '-') : "N/A";
+                    
+                    const date = entry.date;
                     const severity = (entry.severity == "LOW")  ? "🔥" : (entry.severity == "MED") ? "🔥🔥" : (entry.severity == "HIGH") ? "🔥🔥🔥" : "";
 
                     if (entry.featured == "true") 
@@ -192,7 +190,7 @@
                     row.innerHTML = `
                         <td><a href="${url}" target="_blank">${date}</a></td>
                         <td><a href="${url}" target="_blank">${entry.summary}</a></td>
-                        <td>${entry.urls.map(url => `<a href="${url}" target="_blank">Source</a>`).join(' | ')}</td>
+                        <td style="text-align: center;">${entry.urls.map(url => `<a href="${url}" target="_blank">Source</a>`).join('<br>')}</td>
                     `;
 
                     tableBody.appendChild(row);
@@ -217,9 +215,9 @@
     <table id="data-table">
         <thead>
             <tr>
-                <th style="width: 10%; text-align: center;""><i class="fa fa-calendar"></i>Date</th>
-                <th style="width: auto;"><i class="fa fa-file-text"></i>Summary</th>
-                <th style="width: 10%; text-align: center;"><i class="fa fa-link"></i>Source</th>
+                <th style="width: 20%; text-align: center;""><i class="fa fa-calendar"></i> Date</th>
+                <th style="width: auto;"><i class="fa fa-file-text"></i> Summary</th>
+                <th style="width: 20%; text-align: center;"><i class="fa fa-link"></i> Source</th>
             </tr>
         </thead>
         <tbody>
