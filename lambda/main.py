@@ -23,8 +23,7 @@ MODEL_TYPE = os.environ['model_type']
 NYT_API = os.environ['nyt_api']
 NYT_API_KEY = os.environ['nyt_api_key']
 NYT_QUERY = os.environ['nyt_query']
-NYT_NEWS_DESK = os.environ['nyt_news_desk']
-NYT_TYPE_OF_MATERIAL = os.environ['nyt_type_of_material']
+NYT_FQ = os.environ['nyt_fq']
 APP_ID = os.environ['app_id']
 BRANCH = os.environ['branch']
 S3_BUCKET = os.environ['s3_bucket']
@@ -39,16 +38,18 @@ def call_nyt(search_date):
                    "begin_date": current_date,
                    "end_date": current_date,
                    "q": NYT_QUERY,
-                   "news_desk": NYT_NEWS_DESK,
-                   "type_of_material": NYT_TYPE_OF_MATERIAL}
+                   "fq": NYT_FQ}
         response = requests.get(NYT_API, params=query_params)
         response.raise_for_status()  # Raise an error for bad status codes (4xx, 5xx)
         articles = []
 
         for item in response.json()["response"]["docs"]:
             #print(json.dumps(item) + "\n")
-            article = {"url": item["web_url"], "abstract": item["abstract"] + item["lead_paragraph"]}
-            print(article)
+            article = {
+                "url": item["web_url"], 
+                "abstract": item["headline"]["main"] + item["abstract"] + item["lead_paragraph"]
+            }
+            #print(article)
             articles.append(article)           
 
         return articles
@@ -71,10 +72,10 @@ def call_mistral(articles):
     )
      
     response = bedrock_runtime.invoke_model(
-    body=body, 
-    modelId='mistral.mixtral-8x7b-instruct-v0:1', 
-    accept='application/json', 
-    contentType='application/json'
+        body=body, 
+        modelId='mistral.mixtral-8x7b-instruct-v0:1', 
+        accept='application/json', 
+        contentType='application/json'
     )
     
     response_body = json.loads(response.get('body').read())
@@ -147,6 +148,7 @@ def lambda_handler(event, context):
     if (len(model_response) > 0):
         new_data = json.loads(model_response[0]['text'])
         for element in new_data:
+            element['date'] = search_date
             element['featured'] = "true"
 
         #print(new_data)
